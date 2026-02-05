@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="refresh" content="0; url=https://godotshaders.com/shader/?orderby=date&order=DESC">
-  <title>Redirecting...</title>
-</head>
-<body>
-  <p>กำลังนำคุณไปยังแบบสอบถาม... หากไม่เปลี่ยนหน้า <a href="ใส่ลิงก์GoogleFormของคุณตรงนี้">คลิกที่นี่</a></p>
-</body>
+  <head>
+    <title>WebAR Video Player</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  </head>
+  <body style="margin: 0px; overflow: hidden;">
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+      
+      <a-assets>
+        <video id="webcamVideo" src="my-video.mp4" loop="true" crossorigin="anonymous" playsinline></video>
+      </a-assets>
+
+      <a-marker preset="hiro">
+        <a-video src="#webcamVideo" width="1.6" height="0.9" position="0 0 0" rotation="-90 0 0"></a-video>
+      </a-marker>
+
+      <a-entity camera></a-entity>
+    </a-scene>
+
+    <script>
+      window.addEventListener('click', function () {
+        var v = document.querySelector('#webcamVideo');
+        v.play();
+      });
+    </script>
+  </body>
 </html>
